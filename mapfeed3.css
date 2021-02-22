@@ -1,0 +1,27 @@
+#headContain{
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+
+}
+#bodyContain{
+	padding-left: 15px;
+	padding-right: 15px;
+	height: 600px;
+}
+#mapTitle{
+	padding: 10px;
+}
+#activityTitle{
+	padding: 10px;
+}
+#activityFeed{
+	height: 600px;
+	display: block;
+	overflow: scroll;
+}
+html {
+  scroll-behavior: smooth;
+}
+

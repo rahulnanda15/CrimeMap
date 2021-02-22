@@ -1,0 +1,788 @@
+<html>
+
+	<head>
+
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+		<script src="https://kit.fontawesome.com/4b51920527.js"></script>
+
+		<link rel="stylesheet" href="https://unpkg.com/aos@2.3.0/dist/aos.css">
+		<script src="https://unpkg.com/aos@2.3.0/dist/aos.js"></script>
+
+
+		<script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-analytics.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-database.js"></script>
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <link rel="stylesheet" href="landing.css">
+
+		<title></title>
+
+	</head>
+
+	<body>
+		
+
+		<nav class="navbar navbar-expand-sm bg-light">
+			<!-- Nav bar titles -->
+			<a class="navbar-brand" href="#" style="padding-left: 5%">Neighborhood Issue Tracker</a>
+			<i class="fas fa-shield-alt" style="color:#0275d8;font-size: 30px"></i>
+			
+
+  <!-- Nav bar Links -->
+		  <ul class="navbar-nav" style="padding-left:31%;">
+		    <li class="nav-item active">
+		      <a class="nav-link" href="#" style="font-weight: 700;">Home  <i class="fas fa-home" style="color:#0275d8;padding-left: 3px;"></i></a>
+		    </li>
+		    <li class="nav-item">
+		      <a class="nav-link" href="mapfeed.html">Map/Feed  <i class="fas fa-map-marker-alt" style="color:#0275d8;padding-left: 3px;"></i></a>
+		    </li>
+		     <li class="nav-item">
+		      <a class="nav-link" href="#">Analytics  <i class="fas fa-chart-bar" style="color:#0275d8;padding-left: 3px;"></i></a>
+		    </li>
+		    <li class="nav-item" style="padding-right: 15px;">
+		      <a class="nav-link" href="profile.html">Profile  <i class="fas fa-user-alt" style="color:#0275d8;padding-left: 3px;"></i></a>
+		    </li>
+		    <!-- Button to add post to activity feed and leaflet map -->
+		    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" onclick="signinout()" id="signBtn">Sign In </button> <h1 id="filler" style="padding-left: 10px"> </h1>
+		    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" onclick="postModal()">Add Post + </button>
+		  </ul>
+
+		</nav>
+
+		<div class="hero-container">
+
+    		<div class="hero-body">
+    			<div class="grid-container">
+  					<div class="grid-item" data-aos="fade-up"><!-- data-aos is the imported animation class/library-->
+  						<div class="ten" data-aos="fade-up">
+  							<!-- setting titles of the wepage on landing page-->
+  							<h2>Locate Crime<br>In Your Toronto Neighborhood</h2>
+  							<br>
+  							<h5>An online application dedicated to locating and sharing issues experienced by your neighbours in the GTA.</h5>
+  						</div>
+  					</div>
+  
+				</div>
+
+				<!-- adding the spoonacular logo on landing page-->
+				<div class="logocontain" data-aos="slide-up">
+					<div class="logoitem1"></div>
+					<div class="logoitem2">	
+						<div id="createBTN"><button class="btn btn-outline-light my-2 my-sm-0 btn-lg" type="submit"><a class="text-white" onclick="createProfile()">Create your Profile! >></a></button></div><br>
+						<button class="btn btn-outline-light my-2 my-sm-0 btn-lg" type="submit"><a class="text-white" href="mapfeed.html">See your Community's Activity Feed >></a></button><br><br>
+						
+						<div id="userInfo"></div>
+					</div>
+				</div>
+			</div>
+ 		</div>
+ 		<h1 class="display-5 text-center text-primary pt-5" data-aos="slide-up">What do we do?</h1>
+ 		<div id="titleContain" class="pt-4 px-5" data-aos="slide-up">
+ 		<div class="card" style="width: 100%;">
+
+		  <div class="card-body">
+
+		  	<div class="row">
+			  <div class="col-sm-4">
+			    <div class="card bg-light border border-primary" >
+			      <div class="card-body pt-5 text-center">
+			        <h5 class="card-title text-primary font-weight-bold text-center h4">Share and Report</h5> <i class="far fa-comments" id="descriptionIcon"></i>
+			        <p class="card-text px-3 py-2 text-center">Experiencing an issue in the area? You can share it publicly to others in the neighborhood using the "Add Post" feature of the webpage. The issue's location will be broadcasted onto a map and activity feed to be found by others. As these issues propose a danger to the livability of your neighborhood, it is crucial that they are shared to notify your community members.</p>
+			        
+			      </div>
+			    </div>
+			  </div>
+			  <div class="col-sm-4">
+			    <div class="card bg-light border border-primary">
+			      <div class="card-body pt-5 text-center">
+			        <h5 class="card-title text-primary font-weight-bold text-center h4">View Community Issues</h5><i class="fas fa-map-marked" id="descriptionIcon"></i>
+			        <p class="card-text px-3 py-2 text-center">View issues reported by your Neighbours within your Toronto Specific ward to ensure your safety, increase awareness, and to progress towards solving the problems within your community. All alerts are viewed on a map and a real-time activity feed</p>
+			       
+			      </div>
+			    </div>
+			  </div>
+			  <div class="col-sm-4">
+			    <div class="card bg-light border border-primary">
+			      <div class="card-body pt-5 text-center">
+			        <h5 class="card-title  text-primary font-weight-bold text-center h4">Interact with Others</h5> <i class="fas fa-user-alt" id="descriptionIcon"></i>
+			        <p class="card-text px-3 py-2 text-center">Create a personalized profile to interact and be discoverable by other community members using the application. With this profile, you can comment on your neighbour's posts or post feedback utilizing the like and dislike features!</p>
+			       
+			      </div>
+			    </div>
+			  </div>
+			</div>
+
+		  </div>
+		</div>
+	</div>
+	
+	<!-- Button trigger modal -->
+
+<!-- Modal -->
+	<div class="modal fade" id="usrModal" tabindex="-1" aria-labelledby="usrModalLabel" aria-hidden="true" data-backdrop="static">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header"><h3>Profile Creation <i class="fas fa-user-alt" style="color:#0275d8;padding-left: 5px;"></i></h3>
+	        <h5 class="modal-title" id="usrModalLabel">Profile Creation</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        Looks like you are new here, please create your profile to allow community members to recognize you. <br><br>
+	        
+	        <div class="input-group input-group-sm mb-3">
+			  <div class="input-group-prepend">
+			    <span class="input-group-text" id="inputGroup-sizing-sm">Username</span>
+			  </div>
+			  <input type="text" class="form-control border border-primary" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="usernameInput">
+			</div>
+			
+			<select name="wards" id="wards" class="custom-select custom-select-sm mb-3 border border-primary">
+			<option value="Filler">Your Toronto Ward...</option>
+            <option value="Eglinton-Lawrence">Eglinton-Lawrence</option>
+            <option value="YorkCentre">York Centre</option>
+            <option value="EtobicokeNorth">Etobicoke North</option>
+            <option value="EtobicokeCenter">Etobicoke Center</option>
+            <option value="EtobicokeLakeshore">Etobicoke Lakeshore</option>
+            <option value="ParkdaleHighPark">Parkdale High Park</option>
+            <option value="YorkSouthWeston">York South Weston</option>
+            <option value="HumberRiverBlackCreek">Humber River Black Creek</option>
+            <option value="Davenport">Davenport</option>
+            <option value="SpadinaFortYork">Spadina Fort York</option>
+            <option value="UniversityRosedale">University Rosedale</option>
+            <option value="TorontoStPauls">Toronto St. Paul's</option>
+            <option value="TorontoCenter">Toronto Center</option>
+            <option value="TorontoDanforth">Toronto Danforth</option>
+            <option value="DonValleyWest">Don Valley West</option>
+            <option value="DonValleyEast">Don Valley East</option>
+            <option value="DonValleyNorth">Don Valley North</option>
+            <option value="Willowdale">Willowdale</option>
+            <option value="BeachesEastYork">Beaches East York</option>
+            <option value="ScarboroughSouthwest">Scarborough Southwest</option>
+            <option value="ScarboroughCentre">Scarborough Centre</option>
+            <option value="ScarboroughNorth">Scarborough North</option>
+            <option value="ScarboroughGuildwood">Scarborough Guildwood</option>
+            <option value="ScarboroughRougePark">Scarborough Rouge Park</option>
+            </select> <br>
+            <div class="form-group row">
+			  <label for="example-date-input" class="col-7 col-form-label">Date Moved into the Neighborhood</label>
+			  <div class="col-5">
+			    <input class="form-control border border-primary" type="date" value="yyyy-mm-dd" id="moveDate">
+			  </div>
+			</div>
+
+            <div class="input-group input-group-sm mb-3">
+			  <div class="input-group-prepend">
+			    <span class="input-group-text" id="inputGroup-sizing-sm">Your Age</span>
+			  </div>
+			  <input type="text" class="form-control border border-primary" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="ageInput">
+			</div>
+
+			
+           
+            <div class="mb-3">
+			    <label for="validationTextarea">Your Favourite Hobbies/Interests (5 words):</label>
+			    <textarea class="form-control border border-primary" id="InterestInput"></textarea>
+			    
+			  </div>
+            
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-primary" onclick="submitProfile()">Save changes</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+
+	<div class="modal fade" id="addPostModal" tabindex="-1" role="dialog" aria-labelledby="addPostLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        Report and Post an Issue
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	      	If you experienced an inconvenience or crime within the GTA, please report it here for your local community to view.
+	      	<br><br>
+			<select name="IssueType" id="IssueType" class="custom-select custom-select-sm mb-3 border border-primary">
+			<option value="Filler">Select the Issue Category</option>
+            <option value="ClosedRoad">Closed Road</option>
+            <option value="LostDog">Lost Dog</option>
+            <option value="PackagePirate">Package Pirate</option>
+            <option value="Assault">Assault</option>
+            <option value="ResidentialRobbery">Residential Robbery</option>
+            <option value="CommericialRobbery">Commercial Robbery</option>
+            <option value="Burglary">Burglary</option>
+            <option value="Theft">Theft</option>
+            <option value="Shoplifting">Shoplifting</option>
+            <option value="SuspiciousStranger">Suspicious Stranger</option>
+            <option value="StolenCar">Stolen Car</option>
+            <option value="CarBurglary">Burglary From Motor Vehicle</option>
+            <option value="Arson">Arson</option>
+            <option value="Homocide">Homocide</option> 
+            <option value="SubstanceAbuse">Drug and Substance Abuse</option>
+            <option value="VehicleCrash">Vehicle Crash</option>
+            <option value="Vandalism">Vandalism</option>
+            <option value="WeaponsViolation">WeaponsViolation</option>
+            <option value="UnidentifiedParking">Unidentified Parking</option>
+            <option value="LostChild">Lost Child</option>
+            <option value="StolenBike">Lost/Stolen Bike</option>
+            
+            </select> <br>
+        	
+        	<select name="wards" id="wards" class="custom-select custom-select-sm mb-3 border border-primary">
+			<option value="Filler">Select the Ward where it Occurred</option>
+            <option value="Eglinton-Lawrence">Eglinton-Lawrence</option>
+            <option value="YorkCentre">York Centre</option>
+            <option value="EtobicokeNorth">Etobicoke North</option>
+            <option value="EtobicokeCenter">Etobicoke Center</option>
+            <option value="EtobicokeLakeshore">Etobicoke Lakeshore</option>
+            <option value="ParkdaleHighPark">Parkdale High Park</option>
+            <option value="YorkSouthWeston">York South Weston</option>
+            <option value="HumberRiverBlackCreek">Humber River Black Creek</option>
+            <option value="Davenport">Davenport</option>
+            <option value="SpadinaFortYork">Spadina Fort York</option>
+            <option value="UniversityRosedale">University Rosedale</option>
+            <option value="TorontoStPauls">Toronto St. Paul's</option>
+            <option value="TorontoCenter">Toronto Center</option>
+            <option value="TorontoDanforth">Toronto Danforth</option>
+            <option value="DonValleyWest">Don Valley West</option>
+            <option value="DonValleyEast">Don Valley East</option>
+            <option value="DonValleyNorth">Don Valley North</option>
+            <option value="Willowdale">Willowdale</option>
+            <option value="BeachesEastYork">Beaches East York</option>
+            <option value="ScarboroughSouthwest">Scarborough Southwest</option>
+            <option value="ScarboroughCentre">Scarborough Centre</option>
+            <option value="ScarboroughNorth">Scarborough North</option>
+            <option value="ScarboroughGuildwood">Scarborough Guildwood</option>
+            <option value="ScarboroughRougePark">Scarborough Rouge Park</option>
+            </select> <br>
+            <div class="input-group input-group-sm mb-3">
+			  <div class="input-group-prepend">
+			    <span class="input-group-text" id="inputGroup-sizing-sm">Issue Address (#,Street,City,Province)</span>
+			  </div>
+			  <input type="text" class="form-control border border-primary" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="issueAddress">
+			</div>
+
+			<div class="input-group input-group-sm mb-3">
+			  <div class="input-group-prepend">
+			    <span class="input-group-text" id="inputGroup-sizing-sm">Time of Day</span>
+			  </div>
+			  <input type="time" class="form-control border border-primary" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="issueTime">
+			</div>
+
+			<div class="input-group input-group-sm mb-3">
+			  <div class="input-group-prepend">
+			    <span class="input-group-text" id="inputGroup-sizing-sm">Date of Issue</span>
+			  </div>
+			  <input type="date" class="form-control border border-primary" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="issueDate">
+			</div>
+            
+            
+            <select name="locations" id="locations" class="custom-select custom-select-sm mb-3 border border-primary">
+				<option value="Filler">Select the Location Type</option>
+	            <option value="Street">Street</option>
+	            <option value="Park">Park</option>
+	            <option value="InBuilding">Inside A Building</option>
+	            <option value="Village">Village</option>
+	            <option value="CommunityCenter">Community Center</option>
+	            <option value="Alley">Alley</option>
+	            <option value="Highway">Highway</option>
+	            <option value="Backyard">Backyard</option>
+	            <option value="OutBuilding">Outside A Building</option>
+	            <option value="InHouse">Inside a/my House</option>
+	            <option value="ApartmentBuilding">Apartment Building</option>
+	            <option value="ParkingLot">Parking Lot</option>
+	            <option value="Storefront">Storefront</option>
+	            <option value="BusStop">Bus Stop</option>
+	            <option value="TrainStation">Train Station</option>
+	            <option value="Restaurant">Restaurant</option>
+	            <option value="GasStation">Gas Station</option>
+	            <option value="OfficeBuilding">Office Building</option>
+	            <option value="Hotel">Hotel</option>
+	            <option value="TouristAttraction">Tourist Attraction</option>
+	            <option value="Gym">Gym</option>
+	            <option value="SportsArea">Sports Area</option>
+	            <option value="Hospital">Hospital/Medical Center</option>
+	            <option value="School">School Campus</option>
+	            <option value="Library">Library</option>
+            </select> <br>
+
+            Description (50 words) <textarea id="issueDescription" rows="2" cols="50" class="form-control border border-primary"> </textarea>
+            <br>
+
+            <button onclick="addPost()" class="btn btn-primary">Submit Post</button>
+	        
+	      </div>
+
+	    </div>
+	  </div>
+	</div>
+		
+			
+		
+		<!--<a href="mapentry.html">Click Me</a>
+
+		<div id="user"></div>
+
+		<button onclick = "signin()">Sign In</button>
+		<button onclick = "signout()">Sign Out</button>
+		<div id="Profile">
+            	<button onclick="viewUser()">View Your Profile</button>
+            	<button onclick="editUser()">Edit Your Profile</button>
+
+
+        </div>
+		<div id="ProfileCreation">
+			
+			Edit Username: <input type="text" id="usernameInput" value="">
+			<br>Your Toronto Ward: 
+			<select name="wards" id="wards">
+			<option value="Filler">--</option>
+            <option value="Eglinton-Lawrence">Eglinton-Lawrence</option>
+            <option value="YorkCentre">York Centre</option>
+            <option value="EtobicokeNorth">Etobicoke North</option>
+            <option value="EtobicokeCenter">Etobicoke Center</option>
+            <option value="EtobicokeLakeshore">Etobicoke Lakeshore</option>
+            <option value="ParkdaleHighPark">Parkdale High Park</option>
+            <option value="YorkSouthWeston">York South Weston</option>
+            <option value="HumberRiverBlackCreek">Humber River Black Creek</option>
+            <option value="Davenport">Davenport</option>
+            <option value="SpadinaFortYork">Spadina Fort York</option>
+            <option value="UniversityRosedale">University Rosedale</option>
+            <option value="TorontoStPauls">Toronto St. Paul's</option>
+            <option value="TorontoCenter">Toronto Center</option>
+            <option value="TorontoDanforth">Toronto Danforth</option>
+            <option value="DonValleyWest">Don Valley West</option>
+            <option value="DonValleyEast">Don Valley East</option>
+            <option value="DonValleyNorth">Don Valley North</option>
+            <option value="Willowdale">Willowdale</option>
+            <option value="BeachesEastYork">Beaches East York</option>
+            <option value="ScarboroughSouthwest">Scarborough Southwest</option>
+            <option value="ScarboroughCentre">Scarborough Centre</option>
+            <option value="ScarboroughNorth">Scarborough North</option>
+            <option value="ScarboroughGuildwood">Scarborough Guildwood</option>
+            <option value="ScarboroughRougePark">Scarborough Rouge Park</option>
+            </select> <br>
+            Enter Your Age: <input type="text" id="ageInput">
+            <br>
+            Date Moved into the Neighborhood:<input type="date" id="moveDate">
+            <br>
+            Your Favourite Hobbies/Interests (5 words): <br><textarea id="InterestInput" rows="2" cols="50"> </textarea> <br><br>
+            <button id="submitProfile" onclick="submitProfileConfirm()">Save Profile</button>
+            <button id="closeEdit" onclick="closeEdit()">Close</button>
+            <div id="profConfirm">
+
+            	Are you sure you would like to save?
+            	
+            	<button onclick="submitProfile()">Yes</button>
+            	<button onclick="unConfirm()">No</button>
+
+            </div>
+
+
+
+		</div>
+		<div id="yourProfile">
+			Username: <h3 id="usrname"></h3>
+			Your Ward: <h3 id="selectedWard"></h3>
+			Your Age: <h3 id="profileAge"></h3>
+			When you Moved into the Neighborhood: <h3 id="dateofMove"></h3>
+			Your Interests: <h3 id="usrInterests"></h3>
+		</div>-->
+		
+
+		<script>
+
+			currentUserName = ''
+			function postModal(){
+		         var database = firebase.database();
+		         var Userref = database.ref('Users');
+		         Userref.on('value', checkUser, errData)
+	        }
+			function checkUser(data){
+				var userData = data.val();
+			    var keys = Object.keys(userData);
+
+				if (userEmail == ''){
+					alert('You must be logged in to use this feature!')
+				}
+				else {
+					fixedEmail = userEmail.replace(/[.]/g,",")
+					if (userData[fixedEmail]!== "Add"){
+            				
+            				$('#addPostModal').modal('show');
+            			}
+            		else {
+            			alert("Please create a profile to add a post")
+            		}
+
+				}
+				
+				
+			}
+
+
+			function createProfile(){
+				$('#usrModal').modal('show');
+			}
+			
+			var provider = new firebase.auth.GoogleAuthProvider();
+			var userEmail = ''
+
+
+			var config = 
+	        {
+	            apiKey: "AIzaSyAVcq-7VCgKOojXonMs44k8ydtMVnKpepI",
+			    authDomain: "communitymap-ce99c.firebaseapp.com",
+			    databaseURL: "https://communitymap-ce99c-default-rtdb.firebaseio.com",
+			    projectId: "communitymap-ce99c",
+			    storageBucket: "communitymap-ce99c.appspot.com",
+			    messagingSenderId: "1093673663402",
+			    appId: "1:1093673663402:web:975f9ebd940cffbef809d3",
+			    measurementId: "G-73K8VQ27H0"   
+	        };
+
+	        firebase.initializeApp(config);
+
+	        function signinout(){
+	        	if (userEmail !== ''){
+	        		
+	        		firebase.auth().signOut().then(function() {
+		              // Sign-out successful.
+		            }, function(error) {
+		              // An error happened.
+		            });
+		            userEmail = ''
+		            console.log(userEmail)
+		            console.log('signed out')
+		            document.getElementById("userInfo").innerHTML = "";
+	        		console.log("you are logged in")
+	        	}
+	        	else {
+	        		var provider = new firebase.auth.GoogleAuthProvider();
+	            firebase.auth().signInWithRedirect(provider).then(function(result) { 
+	                window.location.replace("fbtest.html");
+
+	            });
+
+	        	}
+	        	
+	        }
+	        function addPost(){
+	        	if (userEmail == ''){
+	        		alert("You must be logged in to use this feature")
+	        	}
+	        	else {
+
+	        	}
+	        }
+	        /*function getData(){
+	            	var database = firebase.database();
+	            	var Userref = database.ref('Users');
+	            	Userref.on('value', addUser)
+	        }
+	         function submitProfileConfirm(){
+	         	document.getElementById("profConfirm").style.visibility = "visible";
+	         }
+	         function unConfirm(){
+	         	document.getElementById("profConfirm").style.visibility = "hidden";
+	         }
+	         function editUser(){
+	         	document.getElementById("ProfileCreation").style.visibility = "visible";
+	         	document.getElementById("usernameInput").value = "rahulN"
+	         }
+	         function closeEdit(){
+	         	document.getElementById("ProfileCreation").style.visibility = "hidden";
+	         
+	         }
+	         function viewUser(){
+	         	var database = firebase.database();
+		        var Userref = database.ref('Users');
+		        document.getElementById("yourProfile").style.visibility = "visible";
+		        Userref.on('value', publishUser, errData)
+	         	
+	         }
+	         function publishUser(data){
+	         	var userData = data.val();
+	         	console.log(userData)
+			    
+			    email = document.getElementById("user").innerHTML
+            	fixedEmail = email.replace(/[.]/g,",")
+            	console.log("working?")
+            	console.log(userData[fixedEmail]["age"]);
+            	var Userkeys = Object.keys(userData);
+            	
+            	for (var i=0; i < Userkeys.length;i++){
+            		var k = Userkeys[i];
+            		console.log(userData[k]['age'])
+            		console.log(Userkeys)
+            		for (i in Userkeys){
+            			if (Userkeys[i] == fixedEmail) {
+            				console.log("we found "+Userkeys[i])
+            				console.log(userData[fixedEmail]['hobbies'])
+            				document.getElementById("usrname").innerHTML = userData[fixedEmail]['username']
+            				document.getElementById("selectedWard").innerHTML = userData[fixedEmail]['ward']
+            				document.getElementById("profileAge").innerHTML = userData[fixedEmail]['age']
+            				document.getElementById("dateofMove").innerHTML = userData[fixedEmail]['moveDate']
+            				document.getElementById("usrInterests").innerHTML = userData[fixedEmail]['hobbies']
+
+            			}
+            		}
+            			
+            		
+            		
+
+            	}
+            	
+	         }
+	         */function submitProfile(){
+	         	MoveinDate = document.getElementById("moveDate").value
+	         	usr = document.getElementById("usernameInput").value
+	         	var e = document.getElementById("wards"); //referencing dropdown menu value
+            	var torontoWard = e.options[e.selectedIndex].text;
+            	usrAge = document.getElementById("ageInput").value
+            	interests = document.getElementById("InterestInput").value;
+            	var intWordcount = interests.split(" ")
+            	
+            	if (intWordcount.length > 5){
+            		alert("You have entered more than 5 words")
+            		return
+            	}
+            	
+            	else if (usr == 'Your Toronto Ward...'){
+            		alert("You have left a text field empty")
+            	}
+            	else if (torontoWard == ''){
+            		alert("You have left a text field empty")
+            	}
+            	else if (MoveinDate == ''){
+            		alert("You have left a text field empty")
+            	}
+            	else if (usrAge == ''){
+            		alert("You have left a text field empty")
+            	}
+            	else if (interests == ''){
+            		alert("You have left a text field empty")
+            	}
+            	else{
+            		$('#usrModal').modal('toggle');
+            		profileData = {
+
+		            username: usr,
+		            ward: torontoWard,
+		            age: usrAge,
+		            moveDate: MoveinDate,
+		            hobbies: interests
+
+		            }
+
+		            //var email = document.getElementById("user").innerHTML
+		        	var fixedEmail = userEmail.replace(/[.]/g,",")
+
+		            var database = firebase.database();
+		        	var Userref = database.ref('Users');
+
+		        	Userref.child(fixedEmail).set(profileData);
+            	}
+
+
+
+	         	
+            	//document.getElementById("ProfileCreation").style.visibility = "hidden";
+            	//document.getElementById("profConfirm").style.visibility = "hidden";
+            	//document.getElementById("Profile").style.visibility = "visible";
+
+	         }
+	        /*
+	        */firebase.auth().onAuthStateChanged(function(user) 
+	        {
+	            if (user == null) 
+	            {
+	            	console.log(userEmail)
+	            	userEmail = ''
+	            	currentUserName = ''
+	            	document.getElementById("signBtn").innerHTML = "Sign In"
+	                return;
+	            } 
+	            else 
+	            {
+	            	userEmail = user.email;
+	            	currentUserName = user.displayName;
+	            	document.getElementById("userInfo").innerHTML = '<h5>Hello '+user.displayName+'! You are logged in using <h5 id="uEmail">'+userEmail+'</h5>'
+	            	//user.email + " " + user.displayName
+	            	
+	            	console.log("signed in")
+	            	console.log(userEmail)
+	            	document.getElementById("signBtn").innerHTML = "Sign Out"
+	            	getData()
+
+	            	//document.getElementById("Profile").style.visibility = "visible";
+	            	
+	                
+	            } // end user null check
+	        });/*
+
+	        function testing(){
+
+	        	var database = firebase.database();
+		        var Userref = database.ref('Users');
+		        var data = 
+	            {
+	              
+	                name: "RahulN",
+	                mark: "Test"
+	            }
+	            usremail = "roconanda@gmail.com"
+	            
+	            fixEmail = usremail.replace(/[.]/g,",")	        
+		       
+		        Userref.child(fixEmail).set(data);
+		        
+
+	        }*/
+	        function submitnewUser(){
+	        	var database = firebase.database();
+            	var Userref = database.ref('Users');
+            	//email = document.getElementById("user").innerHTML
+            	fixedEmail = userEmail.replace(/[.]/g,",")
+            	var today = new Date();
+        		var dd = String(today.getDate()).padStart(2, '0');
+        		var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        		var yyyy = today.getFullYear();
+
+        		//stored in variable called "today"
+
+        		today = mm + '/' + dd + '/' + yyyy;
+            	Userref.child(fixedEmail).set("Add");
+            	//document.getElementById("ProfileCreation").style.visibility = "visible";
+            	//document.getElementById("Profile").style.visibility = "hidden";
+
+
+
+	        }/**/
+	        function getData(){
+		         var database = firebase.database();
+		         var Userref = database.ref('Users');
+		         Userref.on('value', addUser, errData)
+	        }
+	        function addUser(data){
+			    console.log("test")
+			    var userData = data.val();
+			    var keys = Object.keys(userData);
+            	console.log(keys);
+            	//email = document.getElementById("user").innerHTML
+            	fixedEmail = userEmail.replace(/[.]/g,",")
+            	sum = 0
+            	console.log(userData[fixedEmail])
+            	for (i in keys){
+
+            		if (keys[i]==fixedEmail){
+            			if (userData[fixedEmail]!== "Add"){
+            				sum = sum + 2 
+            			}
+            			
+            		}
+
+            		//if (userData[keys][i][])
+            		else {
+						sum = sum;            			
+            		}
+            		console.log(keys[i])
+            		
+            	}
+            	if (sum == 2){
+            		document.getElementById("createBTN").style.visibility = "hidden";
+            		return
+            	}
+            	
+            	else if (sum < 2){
+            		
+            		//alert("Looks like you are new here, please create your profile")
+            		submitnewUser()
+            		createProfile()
+            	}
+            	
+			            	
+			            	
+
+			            	//Userref.child(studentID).set(data);
+
+			}
+			function errData(err)
+	        {
+	            console.log('Error!')
+	            console.log(err)
+	        }
+	        function addPost(){
+	        	
+	        	var database = firebase.database();
+		        var issueRef = database.ref('NeighborhoodIssues');
+
+		        var i = document.getElementById("IssueType"); //referencing dropdown menu value
+            	var issueType = i.options[i.selectedIndex].text;
+            	var issueTyperF = i.options[i.selectedIndex].value;
+            	
+
+            	var w = document.getElementById("wards"); //referencing dropdown menu value
+            	var issueWard = w.options[w.selectedIndex].text;
+
+            	var issueAddress = document.getElementById("issueAddress").value
+            	var issueTime = document.getElementById("issueTime").value
+            	var issueDate = document.getElementById("issueDate").value
+
+            	var l = document.getElementById("locations"); //referencing dropdown menu value
+            	var issueLocation = l.options[l.selectedIndex].text;
+
+            	var issueDescription = document.getElementById("issueDescription").value
+            	//var mail = document.getElementById("userEmail").innerHTML
+            	var fixEmail = userEmail.replace(/[.]/g,",")
+            	var issueUserName = currentUserName;
+
+		        var data = 	            {
+	              
+	                User: fixEmail,
+	                Name: issueUserName,
+	                IssueType: issueType,
+	                Ward: issueWard,
+	                Address: issueAddress,
+	                Time: issueTime,
+	                Date: issueDate,
+	                LocationType: issueLocation,
+	                Description: issueDescription,
+	                Comments: "",
+	                Likes: "",
+	                Dislikes: ""
+
+	            }
+	            issueDateF = issueDate.replace(/[-]/g,"")
+	            issueTimeF = issueTime.replace(/[:]/g,"")
+	            issueStamp = issueDateF + issueTyperF + issueTimeF
+	            issueRef.child(issueStamp).set(data);
+	           
+	            
+	        }
+	        /*
+	        //testing()
+	        getData()
+			*/
+
+			
+			AOS.init({
+  			duration: 1500,
+		})
+
+
+		</script>
+
+	</body>
+
+
+</html>
