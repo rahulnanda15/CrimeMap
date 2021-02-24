@@ -1,18 +1,16 @@
 			var userGlobal = ''
-			var postidGlobal = ''
+			var postidGlobal = '' //setting global variables
 			var userEmail = ''
 			var currentUserName = ''
-			console.log("working nowfr")
+			
 			var provider = new firebase.auth.GoogleAuthProvider();
-			console.log("HELLO")
-			console.log("testing test testse")
+			
 
 			var currentdate = new Date();
 			console.log(currentdate)
-			console.log("geepers")
-			console.log("wowowjejir")
+			
 			var curPost = ''
-			console.log(" irehtrgueifjowfiej")
+			
 			
 			var config = 
 	        {
@@ -28,13 +26,13 @@
 
 	        firebase.initializeApp(config);
 
-	        console.log("this is a test")
-
+	        
+	        //setting activity feed variable as empty
 	        activityFeed=[]
 
-	        function readExisting(){
+	        function readExisting(){ //function reads the existing user into the page
 	        	var database = firebase.database();
-	        	fixEmail = userEmail.replace(/[.]/g,",")
+	        	fixEmail = userEmail.replace(/[.]/g,",") //fetches data on the current user
 		        var userRef = database.ref('Users/'+fixEmail);
 		        userRef.on('value', writeExisting, errData)
 	        }
@@ -43,6 +41,7 @@
 	        	fixEmail = userEmail.replace(/[.]/g,",")
 	        	curUser = userData[fixEmail]
 
+	        	//fills edit profile input form with current user information
 	        	document.getElementById("moveDate").value = curUser['moveDate']
 	         	document.getElementById("usernameInput").value = curUser['username']
 	         	var e = document.getElementById("wards"); //referencing dropdown menu value
@@ -56,14 +55,14 @@
 	        	document.getElementById("CurrentAge").innerHTML = "Current Age: " + curUser['age']
 	        	document.getElementById("CurrentHobbies").innerHTML = "Hobbies and Interests: "+curUser['hobbies']
 
-	        	readExisting()
+	        	readExisting() //constantly being ran, execute again after function is complete
 
 	        	 
 
 	        }
 	        readExisting()
 	        
-    		//stored in variable called "today"
+    		
     		
 
 
@@ -98,18 +97,7 @@
 	        }
 
 
-	        /*function typetest(){
-	        	var comment = document.getElementById("testComment").value
-	        	var database = firebase.database();
-		        var issueRef = database.ref('NeighborhoodIssues');
-		        var name = document.getElementById("userFull").innerHTML
-		        var date = 2-10-2020
-		        commentID = String(name) + String(date)
-		        //issueRef.child(issueStamp).set(data);
-		        issueRef.child('20210217ResidentialRobbery0404/Comments/'+commentID).set(comment);
-	        }
-
-	        */function addPost(){
+	        function addPost(){ //function to add post to database
 
 	        	document.getElementById("activityFeed").innerHTML = ""
 	        	var database = firebase.database();
@@ -135,12 +123,15 @@
             	var issueLocation = l.options[l.selectedIndex].text;
 
             	var issueDescription = document.getElementById("issueDescription").value
+
+            	//getting word count of description input by splitting into an array
             	var descriptionWordcount = issueDescription.split(" ")
             	console.log(descriptionWordcount.length)
-            	//var mail = document.getElementById("userEmail").innerHTML
+            	
             	var fixEmail = userEmail.replace(/[.]/g,",")
             	var issueUserName = currentUserName;
 
+            	//error checking for empty inputs
             	if (issueTyperF == 'Filler'){
             		alert("You have left an entry field empty!")
             		
@@ -163,13 +154,15 @@
             	else if (issueDescription == ' '){
             		alert("You have left an entry field empty!")
             	}
+
+            	//checks if description input array has more than 50 elements (words)
             	else if (descriptionWordcount.length > 50){
             		alert("You have entered too many words; You have entered "+descriptionWordcount.length+" words.")
             	}
             	
             	
-            	else {
-            		var data = 	            {
+            	else { //if no errors, add the post the database
+            		var data = 	            { //setting data object structure
 	              
 	                User: fixEmail,
 	                Name: issueUserName,
@@ -185,15 +178,19 @@
 	                Dislikes: ""
 
 	            }
+
+	            //creating Post ID composed on the issue category and its time stamp
 	            issueDateF = issueDate.replace(/[-]/g,"")
 	            issueTimeF = issueTime.replace(/[:]/g,"")
 	            issueStamp = issueDateF + issueTyperF + issueTimeF
+
+	            //sets data to database under its child post ID
 	            issueRef.child(issueStamp).set(data);
 	            
             	}
 		        
-	            $('#addPostModal').modal('toggle');
-	            readFeed()
+	            $('#addPostModal').modal('toggle'); //closes the add post modal
+	            readFeed() //re-reads the feed since a new post was added
 	            
 	        }
 	        
@@ -204,18 +201,18 @@
 		        var userRef = database.ref('Users/'+fixEmail);
 		        userRef.on('value', writeUserInfo, errData)
 	        }
-	        function writeUserInfo(data){
+	        function writeUserInfo(data){ //function changes the HTML of the header to greet the logged in user
 	        	var userData = data.val();
-	        	console.log(userData['ward'])
+	        	console.log(userData['ward']) 
 	        	document.getElementById("userHead").innerHTML = "Hello "+ currentUserName +", Here's Your Profile and Account Information"
 			    
-			    //var keys = Object.keys(userData);
+			   
 	        }
-	        firebase.auth().onAuthStateChanged(function(user) {
+	        firebase.auth().onAuthStateChanged(function(user) { //checks if user is logged in
 	            if (user == null) 
 	            {
 	                
-	                console.log(userEmail)
+	                 
 	            	userEmail = ''
 	            	currentUserName = ''
 	            	document.getElementById("signBtn").innerHTML = "Sign In"
@@ -226,21 +223,19 @@
 	            } 
 	            else 
 	            {
-	            	userEmail = user.email;
+	            	userEmail = user.email; //if user is logged in, set email variable as the user's email
 	            	currentUserName = user.displayName
-	            	//document.getElementById("userInfo").innerHTML = '<h5>Hello '+user.displayName+'! You are logged in using <h5 id="uEmail">'+userEmail+'</h5>'
-	            	//user.email + " " + user.displayName
+	            	
 	            	
 	            	console.log("signed in")
 	            	console.log(userEmail)
 	            	document.getElementById("signBtn").innerHTML = "Sign Out"
 
 	            	console.log(user.displayName)
-	            	findUserInfo()
+	            	findUserInfo() //executes function that reads user data into the input form if logged in
 	            	
 
-	            	//document.getElementById("userFull").innerHTML = user.displayName
-	            	//document.getElementById("userEmail").innerHTML = user.email
+	            	
 
 	                
 	            } // end user null check
@@ -255,10 +250,8 @@
 	            console.log('Error!')
 	            console.log(err)
 	        }
-	        /*
-	        function test(parameter){
-	        	console.log(parameter)
-	        }*/
+	        
+	        
 	        function submitProfile(){
 	         	MoveinDate = document.getElementById("moveDate").value
 	         	usr = document.getElementById("usernameInput").value
