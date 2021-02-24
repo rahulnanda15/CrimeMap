@@ -27,7 +27,7 @@
 	</head>
 
 	<body>
-	<nav class="navbar navbar-expand-sm bg-light">
+		<nav class="navbar navbar-expand-sm bg-light">
 			<!-- Nav bar titles -->
 			<a class="navbar-brand" href="index.html" style="padding-left: 5%">Neighborhood Issue Tracker</a>
 			<i class="fas fa-shield-alt" style="color:#0275d8;font-size: 30px"></i>
@@ -67,178 +67,180 @@
 			  </div>
 			</div>
 		</div>
-	<div id="bodyContain">
-		<div class="row">
-		    <div class="col-7">
-		      <div class="card">
-			  
-			  <div class="card-body">
-			    <h5 class="card-title text-center text-primary border border-primary" id="mapTitle"></h3>
-			    <div id='map' style='width:100%; height:600'></div>
-			   
-			  </div>
-			</div>
-		    </div>
-		    <div class="col-5">
-		      <div class="card">
-			  
-			  <div class="card-body">
-			    <h5 class="card-title text-center text-primary border border-primary" id="activityTitle">Activity Feed</h3>
 
-			    	<div id="activityFeed">
-			    		
+		<div id="bodyContain">
+			<div class="row">
+			    <div class="col-7">
+			      <div class="card">
+				  
+				  <div class="card-body">
+				    <h5 class="card-title text-center text-primary border border-primary" id="mapTitle"></h3>
+				    <div id='map' style='width:100%; height:600'></div>
+				   
+				  </div>
+				</div>
+			    </div>
+			    <div class="col-5">
+			      <div class="card">
+				  
+				  <div class="card-body">
+				    <h5 class="card-title text-center text-primary border border-primary" id="activityTitle">Activity Feed</h3>
 
-			    	</div>
-			   
-			  </div>
+				    	<div id="activityFeed">
+				    		
+
+				    	</div>
+				   
+				  </div>
+				</div>
+			    </div>
 			</div>
-		    </div>
 		</div>
-	</div>
 
-	<div class="modal fade" id="userInfoModal" tabindex="-1" role="dialog" aria-labelledby="userInfoModalLabel" aria-hidden="true">
-	  <div class="modal-dialog" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h5 class="modal-title" id="userInfoModalLabel"></h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">&times;</span>
-	        </button>
-	      </div>
-	      <div class="modal-body" id="userInfoBody">
-	        
-	      </div>
+		<!-- empty user information modal. Info/innerHTML gets added once "See User" button is clicked-->
+		<div class="modal fade" id="userInfoModal" tabindex="-1" role="dialog" aria-labelledby="userInfoModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="userInfoModalLabel"></h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body" id="userInfoBody">
+		        
+		      </div>
 
-	    </div>
-	  </div>
-	</div>
+		    </div>
+		  </div>
+		</div>
 
-	<div class="modal fade" id="addPostModal" tabindex="-1" role="dialog" aria-labelledby="addPostLabel" aria-hidden="true">
-	  <div class="modal-dialog" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h5 class="modal-title" id="addPostLabel">Report and Post an Issue</h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">&times;</span>
-	        </button>
-	      </div>
-	      <div class="modal-body">
-	      	If you experienced an inconvenience or crime within the GTA, please report it here for your local community to view.
-	      	<br><br>
-			<select name="IssueType" id="IssueType" class="custom-select custom-select-sm mb-3 border border-primary">
-			<option value="Filler">Select the Issue Category</option>
-            <option value="ClosedRoad">Closed Road</option>
-            <option value="LostDog">Lost Dog</option>
-            <option value="PackagePirate">Package Pirate</option>
-            <option value="Assault">Assault</option>
-            <option value="ResidentialRobbery">Residential Robbery</option>
-            <option value="CommericialRobbery">Commercial Robbery</option>
-            <option value="Burglary">Burglary</option>
-            <option value="Theft">Theft</option>
-            <option value="Shoplifting">Shoplifting</option>
-            <option value="SuspiciousStranger">Suspicious Stranger</option>
-            <option value="StolenCar">Stolen Car</option>
-            <option value="CarBurglary">Burglary From Motor Vehicle</option>
-            <option value="Arson">Arson</option>
-            <option value="Homocide">Homocide</option> 
-            <option value="SubstanceAbuse">Drug and Substance Abuse</option>
-            <option value="VehicleCrash">Vehicle Crash</option>
-            <option value="Vandalism">Vandalism</option>
-            <option value="WeaponsViolation">WeaponsViolation</option>
-            <option value="UnidentifiedParking">Unidentified Parking</option>
-            <option value="LostChild">Lost Child</option>
-            <option value="StolenBike">Lost/Stolen Bike</option>
-            
-            </select> <br>
-        	
-        	<select name="wards" id="wards" class="custom-select custom-select-sm mb-3 border border-primary">
-			<option value="Filler">Select the Ward where it Occurred</option>
-            <option value="Eglinton-Lawrence">Eglinton-Lawrence</option>
-            <option value="YorkCentre">York Centre</option>
-            <option value="EtobicokeNorth">Etobicoke North</option>
-            <option value="EtobicokeCenter">Etobicoke Center</option>
-            <option value="EtobicokeLakeshore">Etobicoke Lakeshore</option>
-            <option value="ParkdaleHighPark">Parkdale High Park</option>
-            <option value="YorkSouthWeston">York South Weston</option>
-            <option value="HumberRiverBlackCreek">Humber River Black Creek</option>
-            <option value="Davenport">Davenport</option>
-            <option value="SpadinaFortYork">Spadina Fort York</option>
-            <option value="UniversityRosedale">University Rosedale</option>
-            <option value="TorontoStPauls">Toronto St. Paul's</option>
-            <option value="TorontoCenter">Toronto Center</option>
-            <option value="TorontoDanforth">Toronto Danforth</option>
-            <option value="DonValleyWest">Don Valley West</option>
-            <option value="DonValleyEast">Don Valley East</option>
-            <option value="DonValleyNorth">Don Valley North</option>
-            <option value="Willowdale">Willowdale</option>
-            <option value="BeachesEastYork">Beaches East York</option>
-            <option value="ScarboroughSouthwest">Scarborough Southwest</option>
-            <option value="ScarboroughCentre">Scarborough Centre</option>
-            <option value="ScarboroughNorth">Scarborough North</option>
-            <option value="ScarboroughGuildwood">Scarborough Guildwood</option>
-            <option value="ScarboroughRougePark">Scarborough Rouge Park</option>
-            </select> <br>
-            <div class="input-group input-group-sm mb-3">
-			  <div class="input-group-prepend">
-			    <span class="input-group-text" id="inputGroup-sizing-sm">Issue Address (#,Street,City,Province)</span>
-			  </div>
-			  <input type="text" class="form-control border border-primary" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="issueAddress">
-			</div>
+		<div class="modal fade" id="addPostModal" tabindex="-1" role="dialog" aria-labelledby="addPostLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="addPostLabel">Report and Post an Issue</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		      	If you experienced an inconvenience or crime within the GTA, please report it here for your local community to view.
+		      	<br><br>
+				<select name="IssueType" id="IssueType" class="custom-select custom-select-sm mb-3 border border-primary">
+				<option value="Filler">Select the Issue Category</option>
+	            <option value="ClosedRoad">Closed Road</option>
+	            <option value="LostDog">Lost Dog</option>
+	            <option value="PackagePirate">Package Pirate</option>
+	            <option value="Assault">Assault</option>
+	            <option value="ResidentialRobbery">Residential Robbery</option>
+	            <option value="CommericialRobbery">Commercial Robbery</option>
+	            <option value="Burglary">Burglary</option>
+	            <option value="Theft">Theft</option>
+	            <option value="Shoplifting">Shoplifting</option>
+	            <option value="SuspiciousStranger">Suspicious Stranger</option>
+	            <option value="StolenCar">Stolen Car</option>
+	            <option value="CarBurglary">Burglary From Motor Vehicle</option>
+	            <option value="Arson">Arson</option>
+	            <option value="Homocide">Homocide</option> 
+	            <option value="SubstanceAbuse">Drug and Substance Abuse</option>
+	            <option value="VehicleCrash">Vehicle Crash</option>
+	            <option value="Vandalism">Vandalism</option>
+	            <option value="WeaponsViolation">WeaponsViolation</option>
+	            <option value="UnidentifiedParking">Unidentified Parking</option>
+	            <option value="LostChild">Lost Child</option>
+	            <option value="StolenBike">Lost/Stolen Bike</option>
+	            
+	            </select> <br>
+	        	
+	        	<select name="wards" id="wards" class="custom-select custom-select-sm mb-3 border border-primary">
+				<option value="Filler">Select the Ward where it Occurred</option>
+	            <option value="Eglinton-Lawrence">Eglinton-Lawrence</option>
+	            <option value="YorkCentre">York Centre</option>
+	            <option value="EtobicokeNorth">Etobicoke North</option>
+	            <option value="EtobicokeCenter">Etobicoke Center</option>
+	            <option value="EtobicokeLakeshore">Etobicoke Lakeshore</option>
+	            <option value="ParkdaleHighPark">Parkdale High Park</option>
+	            <option value="YorkSouthWeston">York South Weston</option>
+	            <option value="HumberRiverBlackCreek">Humber River Black Creek</option>
+	            <option value="Davenport">Davenport</option>
+	            <option value="SpadinaFortYork">Spadina Fort York</option>
+	            <option value="UniversityRosedale">University Rosedale</option>
+	            <option value="TorontoStPauls">Toronto St. Paul's</option>
+	            <option value="TorontoCenter">Toronto Center</option>
+	            <option value="TorontoDanforth">Toronto Danforth</option>
+	            <option value="DonValleyWest">Don Valley West</option>
+	            <option value="DonValleyEast">Don Valley East</option>
+	            <option value="DonValleyNorth">Don Valley North</option>
+	            <option value="Willowdale">Willowdale</option>
+	            <option value="BeachesEastYork">Beaches East York</option>
+	            <option value="ScarboroughSouthwest">Scarborough Southwest</option>
+	            <option value="ScarboroughCentre">Scarborough Centre</option>
+	            <option value="ScarboroughNorth">Scarborough North</option>
+	            <option value="ScarboroughGuildwood">Scarborough Guildwood</option>
+	            <option value="ScarboroughRougePark">Scarborough Rouge Park</option>
+	            </select> <br>
+	            <div class="input-group input-group-sm mb-3">
+				  <div class="input-group-prepend">
+				    <span class="input-group-text" id="inputGroup-sizing-sm">Issue Address (#,Street,City,Province)</span>
+				  </div>
+				  <input type="text" class="form-control border border-primary" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="issueAddress">
+				</div>
 
-			<div class="input-group input-group-sm mb-3">
-			  <div class="input-group-prepend">
-			    <span class="input-group-text" id="inputGroup-sizing-sm">Time of Day</span>
-			  </div>
-			  <input type="time" class="form-control border border-primary" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="issueTime">
-			</div>
+				<div class="input-group input-group-sm mb-3">
+				  <div class="input-group-prepend">
+				    <span class="input-group-text" id="inputGroup-sizing-sm">Time of Day</span>
+				  </div>
+				  <input type="time" class="form-control border border-primary" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="issueTime">
+				</div>
 
-			<div class="input-group input-group-sm mb-3">
-			  <div class="input-group-prepend">
-			    <span class="input-group-text" id="inputGroup-sizing-sm">Date of Issue</span>
-			  </div>
-			  <input type="date" class="form-control border border-primary" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="issueDate">
-			</div>
-            
-            
-            <select name="locations" id="locations" class="custom-select custom-select-sm mb-3 border border-primary">
-				<option value="Filler">Select the Location Type</option>
-	            <option value="Street">Street</option>
-	            <option value="Park">Park</option>
-	            <option value="InBuilding">Inside A Building</option>
-	            <option value="Village">Village</option>
-	            <option value="CommunityCenter">Community Center</option>
-	            <option value="Alley">Alley</option>
-	            <option value="Highway">Highway</option>
-	            <option value="Backyard">Backyard</option>
-	            <option value="OutBuilding">Outside A Building</option>
-	            <option value="InHouse">Inside a/my House</option>
-	            <option value="ApartmentBuilding">Apartment Building</option>
-	            <option value="ParkingLot">Parking Lot</option>
-	            <option value="Storefront">Storefront</option>
-	            <option value="BusStop">Bus Stop</option>
-	            <option value="TrainStation">Train Station</option>
-	            <option value="Restaurant">Restaurant</option>
-	            <option value="GasStation">Gas Station</option>
-	            <option value="OfficeBuilding">Office Building</option>
-	            <option value="Hotel">Hotel</option>
-	            <option value="TouristAttraction">Tourist Attraction</option>
-	            <option value="Gym">Gym</option>
-	            <option value="SportsArea">Sports Area</option>
-	            <option value="Hospital">Hospital/Medical Center</option>
-	            <option value="School">School Campus</option>
-	            <option value="Library">Library</option>
-            </select> <br>
+				<div class="input-group input-group-sm mb-3">
+				  <div class="input-group-prepend">
+				    <span class="input-group-text" id="inputGroup-sizing-sm">Date of Issue</span>
+				  </div>
+				  <input type="date" class="form-control border border-primary" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="issueDate">
+				</div>
+	            
+	            
+	            <select name="locations" id="locations" class="custom-select custom-select-sm mb-3 border border-primary">
+					<option value="Filler">Select the Location Type</option>
+		            <option value="Street">Street</option>
+		            <option value="Park">Park</option>
+		            <option value="InBuilding">Inside A Building</option>
+		            <option value="Village">Village</option>
+		            <option value="CommunityCenter">Community Center</option>
+		            <option value="Alley">Alley</option>
+		            <option value="Highway">Highway</option>
+		            <option value="Backyard">Backyard</option>
+		            <option value="OutBuilding">Outside A Building</option>
+		            <option value="InHouse">Inside a/my House</option>
+		            <option value="ApartmentBuilding">Apartment Building</option>
+		            <option value="ParkingLot">Parking Lot</option>
+		            <option value="Storefront">Storefront</option>
+		            <option value="BusStop">Bus Stop</option>
+		            <option value="TrainStation">Train Station</option>
+		            <option value="Restaurant">Restaurant</option>
+		            <option value="GasStation">Gas Station</option>
+		            <option value="OfficeBuilding">Office Building</option>
+		            <option value="Hotel">Hotel</option>
+		            <option value="TouristAttraction">Tourist Attraction</option>
+		            <option value="Gym">Gym</option>
+		            <option value="SportsArea">Sports Area</option>
+		            <option value="Hospital">Hospital/Medical Center</option>
+		            <option value="School">School Campus</option>
+		            <option value="Library">Library</option>
+	            </select> <br>
 
-            Description (50 words) <textarea id="issueDescription" rows="2" cols="50" class="form-control border border-primary"> </textarea>
-            <br>
+	            Description (50 words) <textarea id="issueDescription" rows="2" cols="50" class="form-control border border-primary"> </textarea>
+	            <br>
 
-            <button onclick="addPost()" class="btn btn-primary">Submit Post</button>
-	        
-	      </div>
+	            <button onclick="addPost()" class="btn btn-primary">Submit Post</button>
+		        
+		      </div>
 
-	    </div>
-	  </div>
-	</div>
+		    </div>
+		  </div>
+		</div>
 
 		<script>
 			function postModal(){
@@ -246,7 +248,7 @@
 		         var Userref = database.ref('Users');
 		         Userref.on('value', checkUser, errData)
 	        }
-			function checkUser(data){
+			function checkUser(data){ //checks if user is logged in if the user tries to click "Add Post" button in navigation bar
 				var userData = data.val();
 			    var keys = Object.keys(userData);
 
