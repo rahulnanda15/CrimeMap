@@ -27,7 +27,7 @@
 	</head>
 
 	<body>
-	<nav class="navbar navbar-expand-sm bg-light">
+		<nav class="navbar navbar-expand-sm bg-light">
 			<!-- Nav bar titles -->
 			<a class="navbar-brand" href="index.html" style="padding-left: 5%">Neighborhood Issue Tracker</a>
 			<i class="fas fa-shield-alt" style="color:#0275d8;font-size: 30px"></i>
@@ -150,278 +150,157 @@
 			    	<div id="CurrentHobbies" class="py-1"></div>
 
 			   
-			  </div>
+				  </div>
+				</div>
+			    </div>
 			</div>
-		    </div>
 		</div>
-	</div>
 	
 
-	<div class="modal fade" id="addPostModal" tabindex="-1" role="dialog" aria-labelledby="addPostLabel" aria-hidden="true">
-	  <div class="modal-dialog" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h5 class="modal-title" id="addPostLabel">Report and Post an Issue</h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">&times;</span>
-	        </button>
-	      </div>
-	      <div class="modal-body">
-	      	If you experienced an inconvenience or crime within the GTA, please report it here for your local community to view.
-	      	<br><br>
-			<select name="IssueType" id="IssueType" class="custom-select custom-select-sm mb-3 border border-primary">
-			<option value="Filler">Select the Issue Category</option>
-            <option value="ClosedRoad">Closed Road</option>
-            <option value="LostDog">Lost Dog</option>
-            <option value="PackagePirate">Package Pirate</option>
-            <option value="Assault">Assault</option>
-            <option value="ResidentialRobbery">Residential Robbery</option>
-            <option value="CommericialRobbery">Commercial Robbery</option>
-            <option value="Burglary">Burglary</option>
-            <option value="Theft">Theft</option>
-            <option value="Shoplifting">Shoplifting</option>
-            <option value="SuspiciousStranger">Suspicious Stranger</option>
-            <option value="StolenCar">Stolen Car</option>
-            <option value="CarBurglary">Burglary From Motor Vehicle</option>
-            <option value="Arson">Arson</option>
-            <option value="Homocide">Homocide</option> 
-            <option value="SubstanceAbuse">Drug and Substance Abuse</option>
-            <option value="VehicleCrash">Vehicle Crash</option>
-            <option value="Vandalism">Vandalism</option>
-            <option value="WeaponsViolation">WeaponsViolation</option>
-            <option value="UnidentifiedParking">Unidentified Parking</option>
-            <option value="LostChild">Lost Child</option>
-            <option value="StolenBike">Lost/Stolen Bike</option>
-            
-            </select> <br>
-        	
-        	<select name="wards" id="wards" class="custom-select custom-select-sm mb-3 border border-primary">
-			<option value="Filler">Select the Ward where it Occurred</option>
-            <option value="Eglinton-Lawrence">Eglinton-Lawrence</option>
-            <option value="YorkCentre">York Centre</option>
-            <option value="EtobicokeNorth">Etobicoke North</option>
-            <option value="EtobicokeCenter">Etobicoke Center</option>
-            <option value="EtobicokeLakeshore">Etobicoke Lakeshore</option>
-            <option value="ParkdaleHighPark">Parkdale High Park</option>
-            <option value="YorkSouthWeston">York South Weston</option>
-            <option value="HumberRiverBlackCreek">Humber River Black Creek</option>
-            <option value="Davenport">Davenport</option>
-            <option value="SpadinaFortYork">Spadina Fort York</option>
-            <option value="UniversityRosedale">University Rosedale</option>
-            <option value="TorontoStPauls">Toronto St. Paul's</option>
-            <option value="TorontoCenter">Toronto Center</option>
-            <option value="TorontoDanforth">Toronto Danforth</option>
-            <option value="DonValleyWest">Don Valley West</option>
-            <option value="DonValleyEast">Don Valley East</option>
-            <option value="DonValleyNorth">Don Valley North</option>
-            <option value="Willowdale">Willowdale</option>
-            <option value="BeachesEastYork">Beaches East York</option>
-            <option value="ScarboroughSouthwest">Scarborough Southwest</option>
-            <option value="ScarboroughCentre">Scarborough Centre</option>
-            <option value="ScarboroughNorth">Scarborough North</option>
-            <option value="ScarboroughGuildwood">Scarborough Guildwood</option>
-            <option value="ScarboroughRougePark">Scarborough Rouge Park</option>
-            </select> <br>
-            <div class="input-group input-group-sm mb-3">
-			  <div class="input-group-prepend">
-			    <span class="input-group-text" id="inputGroup-sizing-sm">Issue Address (#,Street,City,Province)</span>
-			  </div>
-			  <input type="text" class="form-control border border-primary" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="issueAddress">
-			</div>
+		<div class="modal fade" id="addPostModal" tabindex="-1" role="dialog" aria-labelledby="addPostLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="addPostLabel">Report and Post an Issue</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		      	If you experienced an inconvenience or crime within the GTA, please report it here for your local community to view.
+		      	<br><br>
+				<select name="IssueType" id="IssueType" class="custom-select custom-select-sm mb-3 border border-primary">
+				<option value="Filler">Select the Issue Category</option>
+	            <option value="ClosedRoad">Closed Road</option>
+	            <option value="LostDog">Lost Dog</option>
+	            <option value="PackagePirate">Package Pirate</option>
+	            <option value="Assault">Assault</option>
+	            <option value="ResidentialRobbery">Residential Robbery</option>
+	            <option value="CommericialRobbery">Commercial Robbery</option>
+	            <option value="Burglary">Burglary</option>
+	            <option value="Theft">Theft</option>
+	            <option value="Shoplifting">Shoplifting</option>
+	            <option value="SuspiciousStranger">Suspicious Stranger</option>
+	            <option value="StolenCar">Stolen Car</option>
+	            <option value="CarBurglary">Burglary From Motor Vehicle</option>
+	            <option value="Arson">Arson</option>
+	            <option value="Homocide">Homocide</option> 
+	            <option value="SubstanceAbuse">Drug and Substance Abuse</option>
+	            <option value="VehicleCrash">Vehicle Crash</option>
+	            <option value="Vandalism">Vandalism</option>
+	            <option value="WeaponsViolation">WeaponsViolation</option>
+	            <option value="UnidentifiedParking">Unidentified Parking</option>
+	            <option value="LostChild">Lost Child</option>
+	            <option value="StolenBike">Lost/Stolen Bike</option>
+	            
+	            </select> <br>
+	        	
+	        	<select name="wards" id="wards" class="custom-select custom-select-sm mb-3 border border-primary">
+				<option value="Filler">Select the Ward where it Occurred</option>
+	            <option value="Eglinton-Lawrence">Eglinton-Lawrence</option>
+	            <option value="YorkCentre">York Centre</option>
+	            <option value="EtobicokeNorth">Etobicoke North</option>
+	            <option value="EtobicokeCenter">Etobicoke Center</option>
+	            <option value="EtobicokeLakeshore">Etobicoke Lakeshore</option>
+	            <option value="ParkdaleHighPark">Parkdale High Park</option>
+	            <option value="YorkSouthWeston">York South Weston</option>
+	            <option value="HumberRiverBlackCreek">Humber River Black Creek</option>
+	            <option value="Davenport">Davenport</option>
+	            <option value="SpadinaFortYork">Spadina Fort York</option>
+	            <option value="UniversityRosedale">University Rosedale</option>
+	            <option value="TorontoStPauls">Toronto St. Paul's</option>
+	            <option value="TorontoCenter">Toronto Center</option>
+	            <option value="TorontoDanforth">Toronto Danforth</option>
+	            <option value="DonValleyWest">Don Valley West</option>
+	            <option value="DonValleyEast">Don Valley East</option>
+	            <option value="DonValleyNorth">Don Valley North</option>
+	            <option value="Willowdale">Willowdale</option>
+	            <option value="BeachesEastYork">Beaches East York</option>
+	            <option value="ScarboroughSouthwest">Scarborough Southwest</option>
+	            <option value="ScarboroughCentre">Scarborough Centre</option>
+	            <option value="ScarboroughNorth">Scarborough North</option>
+	            <option value="ScarboroughGuildwood">Scarborough Guildwood</option>
+	            <option value="ScarboroughRougePark">Scarborough Rouge Park</option>
+	            </select> <br>
+	            <div class="input-group input-group-sm mb-3">
+				  <div class="input-group-prepend">
+				    <span class="input-group-text" id="inputGroup-sizing-sm">Issue Address (#,Street,City,Province)</span>
+				  </div>
+				  <input type="text" class="form-control border border-primary" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="issueAddress">
+				</div>
 
-			<div class="input-group input-group-sm mb-3">
-			  <div class="input-group-prepend">
-			    <span class="input-group-text" id="inputGroup-sizing-sm">Time of Day</span>
-			  </div>
-			  <input type="time" class="form-control border border-primary" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="issueTime">
-			</div>
+				<div class="input-group input-group-sm mb-3">
+				  <div class="input-group-prepend">
+				    <span class="input-group-text" id="inputGroup-sizing-sm">Time of Day</span>
+				  </div>
+				  <input type="time" class="form-control border border-primary" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="issueTime">
+				</div>
 
-			<div class="input-group input-group-sm mb-3">
-			  <div class="input-group-prepend">
-			    <span class="input-group-text" id="inputGroup-sizing-sm">Date of Issue</span>
-			  </div>
-			  <input type="date" class="form-control border border-primary" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="issueDate">
-			</div>
-            
-            
-            <select name="locations" id="locations" class="custom-select custom-select-sm mb-3 border border-primary">
-				<option value="Filler">Select the Location Type</option>
-	            <option value="Street">Street</option>
-	            <option value="Park">Park</option>
-	            <option value="InBuilding">Inside A Building</option>
-	            <option value="Village">Village</option>
-	            <option value="CommunityCenter">Community Center</option>
-	            <option value="Alley">Alley</option>
-	            <option value="Highway">Highway</option>
-	            <option value="Backyard">Backyard</option>
-	            <option value="OutBuilding">Outside A Building</option>
-	            <option value="InHouse">Inside a/my House</option>
-	            <option value="ApartmentBuilding">Apartment Building</option>
-	            <option value="ParkingLot">Parking Lot</option>
-	            <option value="Storefront">Storefront</option>
-	            <option value="BusStop">Bus Stop</option>
-	            <option value="TrainStation">Train Station</option>
-	            <option value="Restaurant">Restaurant</option>
-	            <option value="GasStation">Gas Station</option>
-	            <option value="OfficeBuilding">Office Building</option>
-	            <option value="Hotel">Hotel</option>
-	            <option value="TouristAttraction">Tourist Attraction</option>
-	            <option value="Gym">Gym</option>
-	            <option value="SportsArea">Sports Area</option>
-	            <option value="Hospital">Hospital/Medical Center</option>
-	            <option value="School">School Campus</option>
-	            <option value="Library">Library</option>
-            </select> <br>
+				<div class="input-group input-group-sm mb-3">
+				  <div class="input-group-prepend">
+				    <span class="input-group-text" id="inputGroup-sizing-sm">Date of Issue</span>
+				  </div>
+				  <input type="date" class="form-control border border-primary" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="issueDate">
+				</div>
+	            
+	            
+	            <select name="locations" id="locations" class="custom-select custom-select-sm mb-3 border border-primary">
+					<option value="Filler">Select the Location Type</option>
+		            <option value="Street">Street</option>
+		            <option value="Park">Park</option>
+		            <option value="InBuilding">Inside A Building</option>
+		            <option value="Village">Village</option>
+		            <option value="CommunityCenter">Community Center</option>
+		            <option value="Alley">Alley</option>
+		            <option value="Highway">Highway</option>
+		            <option value="Backyard">Backyard</option>
+		            <option value="OutBuilding">Outside A Building</option>
+		            <option value="InHouse">Inside a/my House</option>
+		            <option value="ApartmentBuilding">Apartment Building</option>
+		            <option value="ParkingLot">Parking Lot</option>
+		            <option value="Storefront">Storefront</option>
+		            <option value="BusStop">Bus Stop</option>
+		            <option value="TrainStation">Train Station</option>
+		            <option value="Restaurant">Restaurant</option>
+		            <option value="GasStation">Gas Station</option>
+		            <option value="OfficeBuilding">Office Building</option>
+		            <option value="Hotel">Hotel</option>
+		            <option value="TouristAttraction">Tourist Attraction</option>
+		            <option value="Gym">Gym</option>
+		            <option value="SportsArea">Sports Area</option>
+		            <option value="Hospital">Hospital/Medical Center</option>
+		            <option value="School">School Campus</option>
+		            <option value="Library">Library</option>
+	            </select> <br>
 
-            Description (50 words) <textarea id="issueDescription" rows="2" cols="50" class="form-control border border-primary"> </textarea>
-            <br>
+	            Description (50 words) <textarea id="issueDescription" rows="2" cols="50" class="form-control border border-primary"> </textarea>
+	            <br>
 
-            <button onclick="addPost()" class="btn btn-primary">Submit Post</button>
-	        
-	      </div>
+	            <button onclick="addPost()" class="btn btn-primary">Submit Post</button>
+		        
+		      </div>
 
-	    </div>
-	  </div>
-	</div>
-
-
-	
-<!--
-		<div id="userInformation"></div>
-		<div id="userEmail"></div>
-		<div id="userFull"></div>
-		testing testing 12345678
-		<br>Issue Category: 
-			<select name="IssueType" id="IssueType">
-			<option value="Filler">--</option>
-            <option value="ClosedRoad">Closed Road</option>
-            <option value="LostDog">Lost Dog</option>
-            <option value="PackagePirate">Package Pirate</option>
-            <option value="Assault">Assault</option>
-            <option value="ResidentialRobbery">Residential Robbery</option>
-            <option value="CommericialRobbery">Commercial Robbery</option>
-            <option value="Burglary">Burglary</option>
-            <option value="Theft">Theft</option>
-            <option value="Shoplifting">Shoplifting</option>
-            <option value="SuspiciousStranger">Suspicious Stranger</option>
-            <option value="StolenCar">Stolen Car</option>
-            <option value="CarBurglary">Burglary From Motor Vehicle</option>
-            <option value="Arson">Arson</option>
-            <option value="Homocide">Homocide</option> 
-            <option value="SubstanceAbuse">Drug and Substance Abuse</option>
-            <option value="VehicleCrash">Vehicle Crash</option>
-            <option value="Vandalism">Vandalism</option>
-            <option value="WeaponsViolation">WeaponsViolation</option>
-            <option value="UnidentifiedParking">Unidentified Parking</option>
-            <option value="LostChild">Lost Child</option>
-            <option value="StolenBike">Lost/Stolen Bike</option>
-            
-            </select> <br>
-        	Ward Location:
-        	<select name="wards" id="wards">
-			<option value="Filler">--</option>
-            <option value="Eglinton-Lawrence">Eglinton-Lawrence</option>
-            <option value="YorkCentre">York Centre</option>
-            <option value="EtobicokeNorth">Etobicoke North</option>
-            <option value="EtobicokeCenter">Etobicoke Center</option>
-            <option value="EtobicokeLakeshore">Etobicoke Lakeshore</option>
-            <option value="ParkdaleHighPark">Parkdale High Park</option>
-            <option value="YorkSouthWeston">York South Weston</option>
-            <option value="HumberRiverBlackCreek">Humber River Black Creek</option>
-            <option value="Davenport">Davenport</option>
-            <option value="SpadinaFortYork">Spadina Fort York</option>
-            <option value="UniversityRosedale">University Rosedale</option>
-            <option value="TorontoStPauls">Toronto St. Paul's</option>
-            <option value="TorontoCenter">Toronto Center</option>
-            <option value="TorontoDanforth">Toronto Danforth</option>
-            <option value="DonValleyWest">Don Valley West</option>
-            <option value="DonValleyEast">Don Valley East</option>
-            <option value="DonValleyNorth">Don Valley North</option>
-            <option value="Willowdale">Willowdale</option>
-            <option value="BeachesEastYork">Beaches East York</option>
-            <option value="ScarboroughSouthwest">Scarborough Southwest</option>
-            <option value="ScarboroughCentre">Scarborough Centre</option>
-            <option value="ScarboroughNorth">Scarborough North</option>
-            <option value="ScarboroughGuildwood">Scarborough Guildwood</option>
-            <option value="ScarboroughRougePark">Scarborough Rouge Park</option>
-            </select> <br>
-            Address of Neighborhood Issue (HouseNum Street, City, Province) <input type="text" id="issueAddress"> <br>
-            Time of Day <input type="time" id="issueTime" min="09:00" max="18:00" required>
-            <br> Date of Issue <input type="date" id="issueDate">
-            <br> Location Type 
-            <select name="locations" id="locations">
-				<option value="Filler">--</option>
-	            <option value="Street">Street</option>
-	            <option value="Park">Park</option>
-	            <option value="InBuilding">Inside A Building</option>
-	            <option value="Village">Village</option>
-	            <option value="CommunityCenter">Community Center</option>
-	            <option value="Alley">Alley</option>
-	            <option value="Highway">Highway</option>
-	            <option value="Backyard">Backyard</option>
-	            <option value="OutBuilding">Outside A Building</option>
-	            <option value="InHouse">Inside a/my House</option>
-	            <option value="ApartmentBuilding">Apartment Building</option>
-	            <option value="ParkingLot">Parking Lot</option>
-	            <option value="Storefront">Storefront</option>
-	            <option value="BusStop">Bus Stop</option>
-	            <option value="TrainStation">Train Station</option>
-	            <option value="Restaurant">Restaurant</option>
-	            <option value="GasStation">Gas Station</option>
-	            <option value="OfficeBuilding">Office Building</option>
-	            <option value="Hotel">Hotel</option>
-	            <option value="TouristAttraction">Tourist Attraction</option>
-	            <option value="Gym">Gym</option>
-	            <option value="SportsArea">Sports Area</option>
-	            <option value="Hospital">Hospital/Medical Center</option>
-	            <option value="School">School Campus</option>
-	            <option value="Library">Library</option>
-            </select> <br>
-
-            Description (50 words) <textarea id="issueDescription" rows="2" cols="50"> </textarea>
-            <br><br>
-
-            <button onclick="addPost()">Submit Post</button> 
-
-            <br><br>
-
-            <div id="activityFeed">-->
-
-            	<!--<div id="post1">
-	            	<div id="iUser">Rahul Nanda</div>
-	            	<div id="iCategory">Package Pirate</div>
-	            	<div id="iWard">Toronto Centre</div>
-	            	<div id="iDate">03-23-01</div>
-	            	<div id="iAddress">*** Douglas Avenue, Toronto, Ontario</div>
-	            	<div id="iDescription">Package was stolen at ___</div>
-           		</div><br><br>-->
-
-            <!--</div>
-            <br>
-            <div id="userInfo"></div>
-            Comment: <input type="text" id="testComment"> <button onclick="typetest()">Post</button>
-
-            <button onclick="like('20210303Shoplifting0954')">Like this Post</button>
-            <button onclick="dislike('20210303Shoplifting0954')">Dislike this Post</button>
-			
-
-			<br><br><div id='map' style='width:700px; height:600'></div>-->
+		    </div>
+		  </div>
+		</div>
 
 		<script>
-			function postModal(){
+
+			function postModal(){ //alerts user to redirect to map/feed page when they click "Add Post" button
 		         alert("Please Visit the Map/Feed Page to Create a Post")
 	        }
 			
+			//function checks if user is logged in
 			function landUserRead(){
 		         var database = firebase.database();
-		         var Userref = database.ref('Users');
+		         var Userref = database.ref('Users'); //fetches user data
 		         Userref.on('value', landUserCheck, errData)
 	        }
 			function landUserCheck(data){
 				var userData = data.val();
-			    var keys = Object.keys(userData);
+			    var keys = Object.keys(userData); //sets variables for data
 
-				if (userEmail == ''){
+				if (userEmail == ''){ //checks if user is logged in, in order to use the profile page
 					alert('You must be logged in to use this feature!')
 					location.replace("index.html")
 				}
@@ -433,7 +312,7 @@
             			}
             		else {
             			alert("You must create a profile to edit an existing one. To do this you may visit the homepage and click the 'Create Profile' button")
-            			location.replace("index.html")
+            			location.replace("index.html") //if user if not logged in, redirect to homepage
             		}
 
 				}
