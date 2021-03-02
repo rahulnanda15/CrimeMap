@@ -274,78 +274,78 @@
 			map = new L.Map('map');
 
 			//adding a basemap layer
-    		var cartocdn = 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png';
-    		cartoAttrib = 'Carto geodatabase is good for this application';
-    		carto = new L.TileLayer(cartocdn);
+			var cartocdn = 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png';
+			cartoAttrib = 'Carto geodatabase is good for this application';
+			carto = new L.TileLayer(cartocdn);
 
-    		//centering map on Toronto coordinates [lat, long],zoom lvl
-    		map.setView([43.6532, -79.3832],12); 
-    		map.addLayer(carto);
+			//centering map on Toronto coordinates [lat, long],zoom lvl
+			map.setView([43.6532, -79.3832],12); 
+			map.addLayer(carto);
 
-    		//api key for positionstack API
-    		var apikey = 'cbe4d20b7da9948df52c96f4e6f2e454';
+			//api key for positionstack API
+			var apikey = 'cbe4d20b7da9948df52c96f4e6f2e454';
 			var iPost = ''
 			layergroup = L.layerGroup().addTo(map);
 
-			
-			function readMap(){ //function that fetches data from database is the necessary reference
 
-	        	var database = firebase.database();
-		        var issueRef = database.ref('NeighborhoodIssues');
-		        //.on references the next function and carries the data to be read
-		        issueRef.on('value', writeMap, errData)
+			function readMap(){ //function that fetches data from database in the necessary reference
 
-	        }
-	        //async function is used to ensure data is fetched in the correct order
-	        async function writeMap(data){
+				var database = firebase.database();
+				var issueRef = database.ref('NeighborhoodIssues');
+				//.on references the next function and carries the data to be read
+				issueRef.on('value', writeMap, errData)
 
-	        	var issueData = data.val(); //defining variables for the data parameter
-	        	layergroup.clearLayers();
-			    var keys = Object.keys(issueData);
-			    
-	        
-			    iPost = '' //setting postID as empty
-
-			
-
-        		for (var i=0;i<keys.length;i++){ //for loop iterates through database and finds addresses of each reported issue
-			    	var k = keys[i]; //setting variable for post IDs
-			    	var userAddress = issueData[k]['Address'] //variable for address of each reported issue
-			    	iPost = 'iPost'+k //creating the post ID used in the HTML for each post in the activity feed
-			    	
-			    	var iAddress = issueData[k]["Address"] //variable for address of each reported issue
-			    	var safeAddress = iAddress.replace(/[0-9]/g, ''); //censoring house number of address to restrict displaying sensitive data
-        			
-
-				//fetching geocoder to convert inputted address to mapped coordinates
-					await fetch("http://api.positionstack.com/v1/forward?access_key="+apikey+"&query="+userAddress) //statement that fetches data from API. It converts the inputted address to usable lat long coordinates (geocoding)
-					//requesting and converting data response to json
-					.then((res)=> res.json())
-					.then(async(output) => { //creates JSON data
-						//setting data variable
-						data=output;
-
-						console.log(data);
-
-						//setting variable for latitude and longitude
-						latitude = data['data'][0]['latitude']
-						longitude = data['data'][0]['longitude']
-
-						//creating innerHTML for content in popup
-						var popUpContent = "<div>"+issueData[k]["IssueType"]+"<br>"+safeAddress+" on "+issueData[k]["Date"]+" at "+issueData[k]["Time"]+"</div><a href='#"+iPost+"'>View in Feed</a>" //the a href tag contains the link to the associated post in the activity feed using the iPost variable previously set
-						
-						marker = L.marker([latitude, longitude]).bindPopup(popUpContent).addTo(layergroup); //adds a marker to the map in the correct location
-						})
-					.catch(function() { //if an error is detected, reload the page
-				        console.log("error");
-				        location.reload()
-				    });
-			    }
-				
-			
 			}
-	        
-	        readMap() //execute read map function to print markers to map
+			//async function is used to ensure data is fetched in the correct order
+			async function writeMap(data){
+
+				var issueData = data.val(); //defining variables for the data parameter
+				layergroup.clearLayers();
+				    var keys = Object.keys(issueData);
+
+
+				    iPost = '' //setting postID as empty
+
+
+
+				for (var i=0;i<keys.length;i++){ //for loop iterates through database and finds addresses of each reported issue
+					var k = keys[i]; //setting variable for post IDs
+					var userAddress = issueData[k]['Address'] //variable for address of each reported issue
+					iPost = 'iPost'+k //creating the post ID used in the HTML for each post in the activity feed
+
+					var iAddress = issueData[k]["Address"] //variable for address of each reported issue
+					var safeAddress = iAddress.replace(/[0-9]/g, ''); //censoring house number of address to restrict displaying sensitive data
+
+
+					//fetching geocoder to convert inputted address to mapped coordinates
+						await fetch("http://api.positionstack.com/v1/forward?access_key="+apikey+"&query="+userAddress) //statement that fetches data from API. It converts the inputted address to usable lat long coordinates (geocoding)
+						//requesting and converting data response to json
+						.then((res)=> res.json())
+						.then(async(output) => { //creates JSON data
+							//setting data variable
+							data=output;
+
+							console.log(data);
+
+							//setting variable for latitude and longitude
+							latitude = data['data'][0]['latitude']
+							longitude = data['data'][0]['longitude']
+
+							//creating innerHTML for content in popup
+							var popUpContent = "<div>"+issueData[k]["IssueType"]+"<br>"+safeAddress+" on "+issueData[k]["Date"]+" at "+issueData[k]["Time"]+"</div><a href='#"+iPost+"'>View in Feed</a>" //the a href tag contains the link to the associated post in the activity feed using the iPost variable previously set
+
+							marker = L.marker([latitude, longitude]).bindPopup(popUpContent).addTo(layergroup); //adds a marker to the map in the correct location
+							})
+						.catch(function() { //if an error is detected, reload the page
+						console.log("error");
+						location.reload()
+					    });
+				    }
+
+
+				}
+
+			readMap() //execute read map function to print markers to map
 
 	        
 
